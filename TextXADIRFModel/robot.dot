@@ -1,0 +1,37 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+139918079316208[ label="{Program|}"]
+
+139918079317120[ label="{*Command|}"]
+
+139918079324656[ label="{InitialCommand|x: INT\ly: INT\l}"]
+
+139918079327104[ label="{MoveCommand|direction: Direction\lsteps: INT\l}"]
+
+
+
+139918079316208 -> 139918079317120[arrowtail=diamond, dir=both, headlabel="commands 0..*"]
+139918079317120 -> 139918079324656 [dir=back]
+139918079317120 -> 139918079327104 [dir=back]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Comment</b></td><td>\/\/.*$</td>
+	</tr>
+	<tr>
+		<td><b>Direction</b></td><td>up|down|left|right</td>
+	</tr>
+</table> >]
+
+
+}

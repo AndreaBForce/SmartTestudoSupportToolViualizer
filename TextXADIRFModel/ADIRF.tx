@@ -1,0 +1,58 @@
+Model:
+    collections*=RuleCollection
+;
+
+RuleCollection:
+    'begin'
+        rules*=Rule
+    'end'
+;
+
+Rule:
+    SetFrequencyRule | ConditionalRule
+;
+
+ConditionalRule:
+    'If' condition=Condition 'Then' actions+=SetFrequencyRule+
+;
+
+Condition:
+    CheckValueRule | CompositeCondition
+;
+
+CompositeCondition:
+    '(' conditions+=Condition (op=LogicalOperator conditions+=Condition)* ')'
+;
+
+
+SetFrequencyRule:
+    'SetFrequency' topic=Topic value=INT
+;
+
+CheckValueRule:
+    'CheckValue' topicCheck=TopicWithProperty  property=ID operator=Operator value=FLOAT
+;
+
+Topic:
+    TopicWithProperty | TopicNoProperty
+;
+
+TopicWithProperty:
+    '/cmd_vel' | '/odom' | '/imu' | '/joint_states' | '/scan'
+;
+
+TopicNoProperty:
+    '/camera/camera_info' | '/camera/image_raw/compressed' | '/camera/image_raw' | '/tf'
+;
+
+Operator:
+    '>' | '<' | '>=' | '<=' | '='
+;
+
+LogicalOperator:
+    'AND' | 'OR'
+;
+
+Comment:
+  /\/\/.*$/
+;

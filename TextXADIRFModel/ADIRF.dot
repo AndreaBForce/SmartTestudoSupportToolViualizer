@@ -1,0 +1,64 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+137172489042480[ label="{Model|}"]
+
+137172489033024[ label="{RuleCollection|}"]
+
+137172489028896[ label="{*Rule|}"]
+
+137172489042432[ label="{ConditionalRule|}"]
+
+137172489039072[ label="{*Condition|}"]
+
+137172489036096[ label="{CompositeCondition|op: LogicalOperator\l}"]
+
+137172489034992[ label="{SetFrequencyRule|topic: Topic\lvalue: INT\l}"]
+
+137172489035664[ label="{CheckValueRule|topicCheck: TopicWithProperty\lproperty: ID\loperator: Operator\lvalue: FLOAT\l}"]
+
+
+
+137172489042480 -> 137172489033024[arrowtail=diamond, dir=both, headlabel="collections 0..*"]
+137172489033024 -> 137172489028896[arrowtail=diamond, dir=both, headlabel="rules 0..*"]
+137172489028896 -> 137172489034992 [dir=back]
+137172489028896 -> 137172489042432 [dir=back]
+137172489042432 -> 137172489039072[arrowtail=diamond, dir=both, headlabel="condition "]
+137172489042432 -> 137172489034992[arrowtail=diamond, dir=both, headlabel="action "]
+137172489039072 -> 137172489035664 [dir=back]
+137172489039072 -> 137172489036096 [dir=back]
+137172489036096 -> 137172489039072[arrowtail=diamond, dir=both, headlabel="left "]
+137172489036096 -> 137172489039072[arrowtail=diamond, dir=both, headlabel="right "]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Comment</b></td><td>\/\/.*$</td>
+	</tr>
+	<tr>
+		<td><b>LogicalOperator</b></td><td>AND|OR</td>
+	</tr>
+	<tr>
+		<td><b>Operator</b></td><td>&gt;|&lt;|&gt;=|&lt;=|=</td>
+	</tr>
+	<tr>
+		<td><b>Topic</b></td><td></td>
+	</tr>
+	<tr>
+		<td><b>TopicNoProperty</b></td><td>/camera/camera_info|/camera/image_raw/compressed|/camera/image_raw|/tf</td>
+	</tr>
+	<tr>
+		<td><b>TopicWithProperty</b></td><td>/cmd_vel|/odom|/imu|/joint_states|/scan</td>
+	</tr>
+</table> >]
+
+
+}
